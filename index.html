@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase Hero Section</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <!-- Splash Screen -->
+    <div class="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo" data-magnetic>PHA5E</div>
+            <div class="loading-wrapper">
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+                <div class="loading-percentage">0%</div>
+            </div>
+            <div class="loading-text">Loading Experience</div>
+        </div>
+        <div class="splash-background">
+            <div class="noise-overlay"></div>
+            <div class="gradient-overlay"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Navigation -->
+        <nav class="site-nav">
+            <div class="nav-logo" data-magnetic data-cursor="hover">PHA5E</div>
+            <div class="nav-menu">
+                <div class="menu-button" data-magnetic data-cursor="hover">
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <div class="hero-text-container">
+                    <div class="hero-text">
+                        <h1 class="main-title" data-magnetic data-cursor="hover">
+                            <span class="text-reveal">IMAGINING</span>
+                            <div class="title-line"></div>
+                        </h1>
+                        <h1 class="main-title" data-magnetic data-cursor="hover">
+                            <span class="text-reveal">UNIQUE</span>
+                            <div class="title-line"></div>
+                        </h1>
+                        <h1 class="main-title" data-magnetic data-cursor="hover">
+                            <span class="text-reveal">CONCEPTS</span>
+                            <div class="title-line"></div>
+                        </h1>
+                    </div>
+                    <div class="hero-subtext">
+                        <h2 class="sub-title" data-magnetic data-cursor="hover">
+                            <span class="text-reveal">AND DIGITAL</span>
+                        </h2>
+                        <h2 class="sub-title highlight" data-magnetic data-cursor="hover">
+                            <span class="text-reveal">EXPERIENCES</span>
+                            <div class="highlight-box"></div>
+                        </h2>
+                    </div>
+                    <div class="scroll-hint">
+                        <span class="hint-text">Scroll to Explore</span>
+                        <div class="hint-arrow"></div>
+                    </div>
+                </div>
+                <div class="hero-images-container">
+                    <div class="hero-images">
+                        <div class="image-container featured" data-index="1" data-magnetic data-cursor="view">
+                            <img src="assets/hero-1.jpg" alt="Digital Experience 1" class="hero-image">
+                            <div class="image-overlay"></div>
+                            <div class="image-caption">Digital Experience</div>
+                        </div>
+                        <div class="image-grid">
+                            <div class="image-container" data-index="2" data-magnetic data-cursor="view">
+                                <img src="assets/hero-2.jpg" alt="Digital Experience 2" class="hero-image">
+                                <div class="image-overlay"></div>
+                                <div class="image-caption">Creative Design</div>
+                            </div>
+                            <div class="image-container" data-index="3" data-magnetic data-cursor="view">
+                                <img src="assets/hero-3.jpg" alt="Digital Experience 3" class="hero-image">
+                                <div class="image-overlay"></div>
+                                <div class="image-caption">Interactive Art</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator" data-magnetic data-cursor="hover">
+                <div class="scroll-text">Scroll to explore</div>
+                <div class="scroll-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
