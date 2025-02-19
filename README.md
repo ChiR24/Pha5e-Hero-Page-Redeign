@@ -1,4 +1,4 @@
-# Phase Hero Section Recreation
+# Pha5e Hero Section Recreation
 
 A pixel-perfect recreation of the Phase website hero section, featuring smooth animations, interactive elements, and vector-like transformations.
 
