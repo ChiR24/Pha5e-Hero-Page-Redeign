@@ -113,26 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (element.dataset.cursor === 'hover') {
                 cursor.setAttribute('data-text', '');
             }
-
-            // Scale effect on hover
-            gsap.to(element, {
-                scale: 1.05,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
         });
 
         element.addEventListener('mouseleave', () => {
             cursor.classList.remove('hover');
             cursor.classList.remove('text-visible');
             cursor.setAttribute('data-text', '');
-
-            // Reset scale
-            gsap.to(element, {
-                scale: 1,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
         });
     });
 
@@ -250,12 +236,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Add hover effect
             container.addEventListener('mouseenter', () => {
-                // Scale up and remove vector effect from hovered image
+                // Remove vector effect from hovered image
                 gsap.to(container, {
-                    scale: 1.05,
                     filter: 'grayscale(0) brightness(1) contrast(1)',
                     opacity: 1,
-                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
                     duration: 0.4,
                     ease: 'power2.out'
                 });
@@ -266,7 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         gsap.to(otherContainer, {
                             filter: 'grayscale(1) brightness(1.2) contrast(0.8)',
                             opacity: 0.5,
-                            scale: 0.95,
                             duration: 0.4,
                             ease: 'power2.out'
                         });
@@ -278,10 +261,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Reset all images
                 imageContainers.forEach(cont => {
                     gsap.to(cont, {
-                        scale: 1,
                         filter: 'grayscale(0) brightness(1) contrast(1)',
                         opacity: 1,
-                        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
                         duration: 0.4,
                         ease: 'power2.out'
                     });
@@ -294,9 +275,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const x = (e.clientX - rect.left) / rect.width - 0.5;
                 const y = (e.clientY - rect.top) / rect.height - 0.5;
 
+                // Remove all rotations and transforms
                 gsap.to(container, {
-                    rotationY: x * 15,
-                    rotationX: -y * 15,
                     duration: 0.4,
                     ease: 'power2.out'
                 });
@@ -304,9 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const image = container.querySelector('.hero-image');
                 if (image) {
                     gsap.to(image, {
-                        x: x * 20,
-                        y: y * 20,
-                        scale: 1.1,
                         duration: 0.4,
                         ease: 'power2.out'
                     });
@@ -315,8 +292,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             container.addEventListener('mouseleave', () => {
                 gsap.to(container, {
-                    rotationY: 0,
-                    rotationX: 0,
                     duration: 0.4,
                     ease: 'power2.out'
                 });
@@ -324,9 +299,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const image = container.querySelector('.hero-image');
                 if (image) {
                     gsap.to(image, {
-                        x: 0,
-                        y: 0,
-                        scale: 1,
                         duration: 0.4,
                         ease: 'power2.out'
                     });
@@ -531,110 +503,29 @@ document.addEventListener('DOMContentLoaded', () => {
         // First line - Wave effect
         if (heroTexts[0]) {
             const text = heroTexts[0].textContent;
-            heroTexts[0].innerHTML = text.split('').map(char => 
-                `<span class="wave-letter">${char}</span>`
-            ).join('');
-
-            const waveLetters = heroTexts[0].querySelectorAll('.wave-letter');
-            waveLetters.forEach((letter, index) => {
-                gsap.to(letter, {
-                    y: -20,
-                    duration: 0.5,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "power1.inOut",
-                    delay: index * 0.05
-                });
-            });
+            heroTexts[0].innerHTML = `<span class="text-reveal">${text}</span>`;
         }
 
         // Second line - Typewriter glitch effect
         if (heroTexts[1]) {
             const text = heroTexts[1].textContent;
-            heroTexts[1].innerHTML = text.split('').map(char => 
-                `<span class="type-letter" style="opacity: 0">${char}</span>`
-            ).join('');
-
-            const typeLetters = heroTexts[1].querySelectorAll('.type-letter');
-            typeLetters.forEach((letter, index) => {
-                gsap.to(letter, {
-                    opacity: 1,
-                    duration: 0.1,
-                    delay: index * 0.1,
-                    onComplete: () => {
-                        if (Math.random() > 0.7) {
-                            gsap.to(letter, {
-                                skewX: gsap.utils.random(-20, 20),
-                                duration: 0.1,
-                                yoyo: true,
-                                repeat: 1
-                            });
-                        }
-                    }
-                });
-            });
+            heroTexts[1].innerHTML = `<span class="text-reveal">${text}</span>`;
         }
 
         // Third line - 3D rotation with scramble
         if (heroTexts[2]) {
             const text = heroTexts[2].textContent;
-            heroTexts[2].innerHTML = text.split('').map(char => 
-                `<span class="rotate-letter" style="display: inline-block">${char}</span>`
-            ).join('');
-
-            const rotateLetters = heroTexts[2].querySelectorAll('.rotate-letter');
-            rotateLetters.forEach((letter, index) => {
-                gsap.to(letter, {
-                    rotationY: 360,
-                    duration: 2,
-                    repeat: -1,
-                    ease: "power1.inOut",
-                    delay: index * 0.1
-                });
-
-                // Random scramble effect
-                setInterval(() => {
-                    if (Math.random() > 0.95) {
-                        const originalChar = letter.textContent;
-                        letter.textContent = String.fromCharCode(gsap.utils.random(65, 90));
-                        gsap.to(letter, {
-                            scale: 1.2,
-                            duration: 0.1,
-                            yoyo: true,
-                            repeat: 1,
-                            onComplete: () => {
-                                letter.textContent = originalChar;
-                            }
-                        });
-                    }
-                }, 2000);
-            });
+            heroTexts[2].innerHTML = `<span class="text-reveal">${text}</span>`;
         }
 
-        // Add hover effects for each line
-        heroTexts.forEach((title, titleIndex) => {
+        // Remove hover effects for each line
+        heroTexts.forEach((title) => {
             title.addEventListener('mouseenter', () => {
-                const letters = title.querySelectorAll('span');
-                letters.forEach((letter, index) => {
-                    gsap.to(letter, {
-                        scale: 1.2,
-                        duration: 0.3,
-                        delay: index * 0.02,
-                        ease: "back.out(1.7)"
-                    });
-                });
+                // No animations on hover
             });
 
             title.addEventListener('mouseleave', () => {
-                const letters = title.querySelectorAll('span');
-                letters.forEach((letter, index) => {
-                    gsap.to(letter, {
-                        scale: 1,
-                        duration: 0.3,
-                        delay: index * 0.02,
-                        ease: "back.out(1.7)"
-                    });
-                });
+                // No animations on hover
             });
         });
     }
