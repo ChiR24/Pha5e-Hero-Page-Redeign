@@ -503,29 +503,89 @@ document.addEventListener('DOMContentLoaded', () => {
         // First line - Wave effect
         if (heroTexts[0]) {
             const text = heroTexts[0].textContent;
-            heroTexts[0].innerHTML = `<span class="text-reveal">${text}</span>`;
+            heroTexts[0].innerHTML = text.split('').map(char => 
+                `<span class="wave-letter">${char}</span>`
+            ).join('');
+
+            const waveLetters = heroTexts[0].querySelectorAll('.wave-letter');
+            waveLetters.forEach((letter, index) => {
+                gsap.to(letter, {
+                    y: -20,
+                    duration: 0.5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "power1.inOut",
+                    delay: index * 0.05
+                });
+            });
         }
 
         // Second line - Typewriter glitch effect
         if (heroTexts[1]) {
             const text = heroTexts[1].textContent;
-            heroTexts[1].innerHTML = `<span class="text-reveal">${text}</span>`;
+            heroTexts[1].innerHTML = text.split('').map(char => 
+                `<span class="type-letter" style="opacity: 0">${char}</span>`
+            ).join('');
+
+            const typeLetters = heroTexts[1].querySelectorAll('.type-letter');
+            typeLetters.forEach((letter, index) => {
+                gsap.to(letter, {
+                    opacity: 1,
+                    duration: 0.1,
+                    delay: index * 0.1,
+                    onComplete: () => {
+                        if (Math.random() > 0.7) {
+                            gsap.to(letter, {
+                                skewX: gsap.utils.random(-20, 20),
+                                duration: 0.1,
+                                yoyo: true,
+                                repeat: 1
+                            });
+                        }
+                    }
+                });
+            });
         }
 
         // Third line - 3D rotation with scramble
         if (heroTexts[2]) {
             const text = heroTexts[2].textContent;
-            heroTexts[2].innerHTML = `<span class="text-reveal">${text}</span>`;
+            heroTexts[2].innerHTML = text.split('').map(char => 
+                `<span class="rotate-letter" style="display: inline-block">${char}</span>`
+            ).join('');
+
+            const rotateLetters = heroTexts[2].querySelectorAll('.rotate-letter');
+            rotateLetters.forEach((letter, index) => {
+                gsap.to(letter, {
+                    duration: 2,
+                    ease: "power1.inOut",
+                    delay: index * 0.1
+                });
+            });
         }
 
         // Remove hover effects for each line
-        heroTexts.forEach((title) => {
+        heroTexts.forEach((title, titleIndex) => {
             title.addEventListener('mouseenter', () => {
-                // No animations on hover
+                const letters = title.querySelectorAll('span');
+                letters.forEach((letter, index) => {
+                    gsap.to(letter, {
+                        duration: 0.3,
+                        delay: index * 0.02,
+                        ease: "power2.out"
+                    });
+                });
             });
 
             title.addEventListener('mouseleave', () => {
-                // No animations on hover
+                const letters = title.querySelectorAll('span');
+                letters.forEach((letter, index) => {
+                    gsap.to(letter, {
+                        duration: 0.3,
+                        delay: index * 0.02,
+                        ease: "power2.out"
+                    });
+                });
             });
         });
     }
